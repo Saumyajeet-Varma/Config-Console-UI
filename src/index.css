@@ -1,1 +1,10 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&family=Poppins:wght@100..900&display=swap');
+
+@theme {
+  /* This is the modern Tailwind v4 way to extend themes */
+  --font-montserrat: "Montserrat", sans-serif;
+}
+
+/* Fallback for standard classes if needed */
+.body-font { font-family: var(--font-montserrat); }
