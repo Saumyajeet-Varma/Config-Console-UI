@@ -4,7 +4,7 @@ import SidebarItem from "./SidebarItem"
 const Sidebar = ({ open, setOpen }) => {
 
     return (
-        <aside className={`${open ? "w-64" : "w-20"} transition-all duration-300 backdrop-blur-xl bg-white/30 dark:bg-white/5 border-r border-white/20 p-4 flex flex-col justify-between`}>
+        <aside className={`${open ? "w-64" : "w-20"} h-screen fixed left-0 top-0 z-40 transition-all duration-300 backdrop-blur-xl bg-white/30 dark:bg-white/5 border-r border-white/20 p-4 flex flex-col justify-between`}>
             <div>
                 <div className="flex items-center justify-between mb-8 ml-3">
                     {open && (
@@ -17,7 +17,7 @@ const Sidebar = ({ open, setOpen }) => {
                         onClick={() => setOpen(!open)}
                         className="text-black dark:text-white"
                     >
-                        {open ? <X size={20} /> : <Menu size={18} />}
+                        {open ? <X size={20} /> : <Menu size={20} />}
                     </button>
                 </div>
 

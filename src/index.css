@@ -1,10 +1,34 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&family=Poppins:wght@100..900&display=swap');
 
 @theme {
-  /* This is the modern Tailwind v4 way to extend themes */
+  --font-ubuntu: "Ubuntu", sans-serif;
+  --font-roboto: "Roboto", sans-serif;
   --font-montserrat: "Montserrat", sans-serif;
 }
 
-/* Fallback for standard classes if needed */
-.body-font { font-family: var(--font-montserrat); }
+@utility font-ubuntu {
+  font-family: var(--font-ubuntu);
+}
+
+@utility font-roboto {
+  font-family: var(--font-roboto);
+}
+
+@utility font-montserrat {
+  font-family: var(--font-montserrat);
+}
+
+@layer utilities {
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-scroll {
+    animation: scroll 25s linear infinite;
+  }
+}

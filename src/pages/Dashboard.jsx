@@ -1,7 +1,7 @@
 import ActivityItem from "../components/ActivityItem";
 import GlassCard from "../components/GlassCard";
 
-export default function HomePage() {
+const Dashboard = () => {
 
     return (
         <main className="flex-1 p-6 overflow-auto">
@@ -13,7 +13,7 @@ export default function HomePage() {
             <div className="mt-6">
                 <div className="backdrop-blur-xl bg-white/30 dark:bg-white/5 border border-white/20 rounded-2xl p-6 shadow-xl">
                     <h3 className="text-lg font-semibold text-black dark:text-white mb-4">
-                        Recent Activity
+                        You have access
                     </h3>
 
                     <div className="space-y-3">
@@ -27,4 +27,4 @@ export default function HomePage() {
     );
 }
 
-
+export default Dashboard

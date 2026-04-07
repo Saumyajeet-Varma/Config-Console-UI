@@ -1,9 +1,9 @@
-const Navbar = () => {
+const Navbar = ({ activeTab }) => {
 
     return (
         <header className="backdrop-blur-xl bg-white/30 dark:bg-white/5 border-b border-white/20 px-6 py-4 flex items-center justify-between">
             <h2 className="text-lg font-semibold text-black dark:text-white">
-                Dashboard
+                {activeTab}
             </h2>
 
             <div className="flex items-center gap-3">

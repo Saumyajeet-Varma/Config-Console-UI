@@ -1,21 +1,6 @@
-import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 
-const Login = () => {
-
-    // const [dark, setDark] = useState(
-    //     localStorage.getItem("theme") === "dark"
-    // )
-
-    // useEffect(() => {
-    //     if (dark) {
-    //         document.documentElement.classList.add("dark")
-    //         localStorage.setItem("theme", "dark")
-    //     } else {
-    //         document.documentElement.classList.remove("dark")
-    //         localStorage.setItem("theme", "light")
-    //     }
-    // }, [dark])
+const LoginPage = () => {
 
     return (
         <div className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white dark:bg-black body-font">
@@ -25,15 +10,6 @@ const Login = () => {
             <div className="absolute -bottom-37.5 -right-37.5 w-100 h-100 bg-orange-400 opacity-20 rounded-full blur-3xl" />
             <div className="absolute top-[40%] left-[30%] w-75 h-75 bg-orange-300 opacity-20 rounded-full blur-3xl" />
 
-            {/* Theme toggle */}
-            {/* <button
-                onClick={() => setDark(!dark)}
-                className="absolute top-6 right-6 px-3 py-1 rounded-lg bg-orange-500 text-white text-sm z-10"
-            >
-                {dark ? "Light" : "Dark"}
-            </button> */}
-
-            {/* Glass card */}
             <div className="relative z-10 w-full max-w-md p-8 rounded-2xl backdrop-blur-xl bg-white/30 dark:bg-white/5 border border-white/20 shadow-2xl">
 
                 <h2 className="text-2xl font-semibold text-center mb-6 text-black dark:text-white">
@@ -75,4 +51,4 @@ const Login = () => {
     )
 }
 
-export default Login
+export default LoginPage
