@@ -1,13 +1,13 @@
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import axios from "../config/axios"
+import toast from "react-hot-toast"
 
 const LoginPage = () => {
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [loading, setLoading] = useState(false)
-    const [error, setError] = useState("")
 
     const navigate = useNavigate()
 
@@ -15,7 +15,6 @@ const LoginPage = () => {
 
         try {
             setLoading(true)
-            setError("")
 
             const params = {
                 email,
@@ -26,14 +25,16 @@ const LoginPage = () => {
 
             localStorage.setItem("accessToken", res.data.accessToken)
             localStorage.setItem("refreshToken", res.data.refreshToken)
-
             localStorage.setItem("user", JSON.stringify(res.data.user))
 
             navigate("/dashboard")
 
+            toast.success(res.data.message)
+
         }
         catch (err) {
-            setError(err.response?.data?.message || "Login failed")
+            toast.error(err.response?.data?.message || "Login failed")
+            console.error(err)
         }
         finally {
             setLoading(false)
@@ -63,10 +64,6 @@ const LoginPage = () => {
                     placeholder="Password"
                     className="w-full mb-2 px-4 py-2 rounded-lg bg-white/40 dark:bg-white/5 border border-white/20 text-black dark:text-white backdrop-blur-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                 />
-
-                {error && (
-                    <p className="text-red-500 text-sm mb-3">{error}</p>
-                )}
 
                 <button
                     onClick={handleLogin}

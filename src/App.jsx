@@ -1,4 +1,5 @@
 import { Routes, Route, Link } from "react-router-dom"
+import { Toaster } from "react-hot-toast"
 import HomePage from "./pages/HomePage"
 import LoginPage from "./pages/LoginPage"
 import RegisterPage from "./pages/RegisterPage"
@@ -10,19 +11,43 @@ import ErrorPage from "./pages/ErrorPage"
 const App = () => {
 
   return (
-    <Routes>
-      <Route path="/login" element={<LoginPage />} />
-      <Route path="/register" element={<RegisterPage />} />
+    <>
+      <Routes>
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
 
-      <Route element={<Layout />}>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/settings" element={<Settings />} />
-      </Route>
+        <Route element={<Layout />}>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/settings" element={<Settings />} />
+        </Route>
 
-      <Route path="*" element={<ErrorPage />} />
+        <Route path="*" element={<ErrorPage />} />
 
-    </Routes>
+      </Routes>
+      <Toaster
+        toastOptions={{
+          style: {
+            backdropFilter: "blur(20px)",
+            background: "rgba(255,255,255,0.05)",
+            border: "1px solid rgba(255,255,255,0.2)",
+            color: "#ffffff",
+          },
+          success: {
+            iconTheme: {
+              primary: "#f97316",
+              secondary: "#ffffff",
+            },
+          },
+          error: {
+            iconTheme: {
+              primary: "#ef4444",
+              secondary: "#ffffff",
+            },
+          },
+        }}
+      />
+    </>
   )
 }
 

@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import axios from "../config/axios"
+import toast from "react-hot-toast"
 
 const RegisterPage = () => {
 
@@ -8,8 +9,6 @@ const RegisterPage = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [loading, setLoading] = useState(false)
-    const [error, setError] = useState("")
-    const [success, setSuccess] = useState("")
 
     const navigate = useNavigate()
 
@@ -17,8 +16,6 @@ const RegisterPage = () => {
 
         try {
             setLoading(true)
-            setError("")
-            setSuccess("")
 
             const params = {
                 name,
@@ -28,15 +25,16 @@ const RegisterPage = () => {
 
             const res = await axios.post("/auth/register", params)
 
-            setSuccess(res.data.message)
-
             setTimeout(() => {
                 navigate("/login")
             }, 2000)
 
+            toast.success(res.data.message)
+
         }
         catch (err) {
-            setError(err.response?.data?.message || "Register failed")
+            toast.error(err.response?.data.message || "Register failed")
+            console.error(err)
         }
         finally {
             setLoading(false)
@@ -73,14 +71,6 @@ const RegisterPage = () => {
                     placeholder="Password"
                     className="w-full mb-3 px-4 py-2 rounded-lg bg-white/40 dark:bg-white/5 border border-white/20 text-black dark:text-white"
                 />
-
-                {error && (
-                    <p className="text-red-500 text-sm mb-2">{error}</p>
-                )}
-
-                {success && (
-                    <p className="text-green-500 text-sm mb-2">{success}</p>
-                )}
 
                 <button
                     onClick={handleRegister}
