@@ -2,8 +2,11 @@ import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import axios from "../config/axios"
 import toast from "react-hot-toast"
+import { useAuth } from "../context/AuthContext"
 
 const LoginPage = () => {
+
+    const { login } = useAuth()
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -23,9 +26,7 @@ const LoginPage = () => {
 
             const res = await axios.post("/auth/login", params)
 
-            localStorage.setItem("accessToken", res.data.accessToken)
-            localStorage.setItem("refreshToken", res.data.refreshToken)
-            localStorage.setItem("user", JSON.stringify(res.data.user))
+            login(res.data)
 
             navigate("/dashboard")
 

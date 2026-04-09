@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { Outlet, useLocation } from "react-router-dom"
+import { Navigate, Outlet, useLocation } from "react-router-dom"
 import Sidebar from "./Sidebar";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import { useAuth } from "../context/AuthContext";
 
 const menu = [
     { name: "Home", path: "/" },
@@ -13,10 +14,20 @@ const menu = [
 
 const Layout = () => {
 
+    const { user, loading } = useAuth()
+
     const [sidebarOpen, setSidebarOpen] = useState(true);
     const location = useLocation();
 
     const activeTab = menu.find(item => item.path === location.pathname)?.name || "";
+
+    if (loading) {
+        return null
+    }
+
+    if (!user) {
+        return <Navigate to="/login" replace />;
+    }
 
     return (
         <div className="relative min-h-screen bg-white dark:bg-black overflow-hidden font-montserrat">
